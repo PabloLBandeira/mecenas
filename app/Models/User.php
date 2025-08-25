@@ -26,13 +26,22 @@ class User extends Authenticatable
     public $incrementing = false;
     protected $keyType = 'string';
     protected $fillable = [
+         'id',
         'name',
         'email',
-        'password',
-        'role',
+        'phone1',
+        'phone2',
+        'state', 
+        'city',
+        'neighborhood',
+        'street',
+        'number',
+        'zip_code',
+        'bio',
         'avatar',
         'status',
-        'bio'
+        'role',
+        'password'
     ];
 
     /**
