@@ -33,6 +33,7 @@ class UserFactory extends Factory
             'avatar' => $this->faker->imageUrl(200, 200, 'people'),
             'status' => 'ativo',
             'password' => Hash::make('password'),
+            'role' => 'customer',
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
         ];
@@ -66,6 +67,13 @@ class UserFactory extends Factory
     {
         return $this->state(fn (array $atributes) => [
             'role' => 'artist',
+        ]);
+    }
+
+    public function unverified(): static 
+    {
+        return $this->state(fn(array $atributes) => [
+            'email_verified_at' => null
         ]);
     }
 }

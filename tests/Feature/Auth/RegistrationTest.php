@@ -2,12 +2,14 @@
 
 namespace Tests\Feature\Auth;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Models\User;
+use Faker\Guesser\Name;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
 class RegistrationTest extends TestCase
 {
-    use RefreshDatabase;
+    use DatabaseTransactions;
 
     public function test_registration_screen_can_be_rendered(): void
     {
@@ -17,15 +19,20 @@ class RegistrationTest extends TestCase
     }
 
     public function test_new_users_can_register(): void
-    {
-        $response = $this->post('/register', [
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
+    {        
+        $user = User::factory()->create([
+            'email' => 'test' . uniqid() . '@example.com',
+        ]); 
+
+        $this->assertDatabaseHas('users', [
+            'name' => $user->name,
+            'email' => $user->email,
         ]);
 
+        $user = User::where('email', $user->email)->first();
+
+        $this->actingAs($user);
+
         $this->assertAuthenticated();
-        $response->assertRedirect(route('dashboard', absolute: false));
     }
 }

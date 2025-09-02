@@ -17,7 +17,7 @@ return new class extends Migration
 
         Schema::table('users', function(Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->enum('role', ['customer', 'artist', 'moderator', 'admin'])->default('user')->after('email');
+            $table->enum('role', ['customer', 'artist', 'moderator', 'admin'])->default('customer')->after('email');
             $table->enum('status', ['ativo', 'inativo'])->default('ativo')->after('role');
             $table->string('avatar')->nullable()->after('status');
             $table->text('bio')->nullable()->after('avatar');
