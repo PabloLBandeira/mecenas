@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('wishe_comments', function (Blueprint $table) {
-            $table->id()->primary();
+        Schema::create('wish_comments', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('wish_id')->constrained()->onDelete('cascade');
             $table->foreignUuid('user_id')->constrained()->onDelete('cascade');
             $table->text('content');
-            $table->id('parent_id')->constrained()->onDelete('cascade');
+            $table->foreignId('parent_id')->nullable()->constrained('wish_comments')->onDelete('cascade');
             $table->timestamps();
 
             $table->index('user_id');
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('wishe_comments');
+        Schema::dropIfExists('wish_comments');
     }
 };

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignUuid('user_id')->constrained()->onDelete('cascade');
             $table->string('title');
-            $table->text('decription');
+            $table->text('description');
             $table->string('category');
             $table->string('sub_category');
             $table->integer('budget');

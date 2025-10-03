@@ -11,7 +11,7 @@ class WishComments extends Model
     use HasFactory;
 
     public $incrementing = true;
-    protected $primaryKey = 'int';
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'wishcomment_id',
