@@ -17,23 +17,11 @@ class ArtworkImageFactory extends Factory
      */
     public function definition(): array
     {
-        $artwork = Artwork::inRandomOrder()->first();
-
-        $imageTypes = ['pintura', 'escultura', 'fotografia', 'digital'];
-        $imageType = $this->faker->randomElement($imageTypes);
-        $imageNames = [
-            'full_view',
-            'detail_1',
-            'detail_2',
-            'angle_1',
-            'angle_2',
-            'close_up',
-            'texture'
-        ];
+        $imageUrl = 'https://picsum.photos/1200/800?random=' . uniqid();
 
         return [
-            'artwork_id' => $artwork->id,
-            'path' => 'artworks/' .$artwork->id .'/' .$this->faker->randomElement($imageNames) .'.jpg',            
+            'artwork_id' => Artwork::factory(),
+            'path' => $imageUrl,
         ];
     }
 

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Services\ArtworkService;
+use App\Services\CategoryService;
 use App\Services\WishService;
 
 use Illuminate\Support\ServiceProvider;
@@ -20,6 +21,10 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(WishService::class, function($app){
             return new WishService();
+        });
+
+        $this->app->bind(CategoryService::class, function($app){
+            return new CategoryService();
         });
     }
 

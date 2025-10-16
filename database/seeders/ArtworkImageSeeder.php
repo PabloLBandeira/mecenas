@@ -22,11 +22,10 @@ class ArtworkImageSeeder extends Seeder
 
             ArtworkImage::factory()
             ->count($numberOfImages)
-            ->create([
-                'artwork_id' => $artwork
-            ]);
+            ->forArtwork($artwork)
+            ->create();
         }
-        
+
         $this->command->info("Artwork images seeded successfully! Created 3-7 images for each of {$artworks->count()} artworks.");
     }
 }
